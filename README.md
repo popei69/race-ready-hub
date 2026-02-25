@@ -1,58 +1,54 @@
-# Welcome to your Lovable project
+# Race Ready Hub
 
-## Project info
+**Your all-in-one race day checklist — from travel and accommodation to race rules and getting to the start line.**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## What is Race Ready Hub?
 
-## How can I edit this code?
+Race Ready Hub is a simple, focused checklist app for runners who want to arrive on race day calm, organized, and fully prepared.  
 
-There are several ways of editing your application.
+Whether you are racing a local 5K, a big-city marathon, or an ultra, Race Ready Hub helps you keep track of every detail so you never have that \"I forgot something\" moment again.
 
-**Use Lovable**
+## Key features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Pre-race checklist**: Capture all the essentials — shoes, kit, nutrition, race documents, and more.
+- **Travel & accommodation**: Plan where you are staying and how you will get there.
+- **Race logistics**: Note bib pickup details, bag drop, start time, meeting points, and post-race meetups.
+- **Course & rules**: Keep links and notes about race rules, cut-off times, elevation, and course info in one place.
+- **Reusable for every race**: Reuse and adapt your checklist for future events so prep gets easier every time.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Try it now
 
-**Use your preferred IDE**
+Open Race Ready Hub in your browser and start planning your next race:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+`https://popei69.github.io/race-ready-hub/`
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+You can use it on desktop or mobile — perfect for updating your checklist while traveling or the night before your race. It does not require any login and uses your cookies to store the races.
 
-Follow these steps:
+## How it works (for runners)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Create or select a race** you want to prepare for.
+2. **Work through each section** of the checklist: travel, accommodation, race info, logistics, and gear.
+3. **Mark items as done** as you book, pack, and organize your race weekend.
+4. **Review everything before race day** so you can head to the start line confident and stress-free.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Why runners love it
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Less stress**: Everything you need to remember is in one place.
+- **No more \"I forgot\" moments**: Your checklist evolves with each race, so you get better prepared over time.
+- **Works for any distance**: From your first 5K to marathons and ultras.
+- **Built for real race weekends**: Covers not just race gear, but also travel, accommodation, and on-the-day logistics.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## Roadmap & ideas
 
-**Edit a file directly in GitHub**
+Some ideas we are exploring for the future:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Shareable checklists** with friends, clubmates, or race buddies.
+- **Better race templates** for different distances and terrain (road, trail, ultra).
+- **Smarter reminders** to review key items before you travel or on race morning.
 
-**Use GitHub Codespaces**
+## For developers
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+Race Ready Hub is built with:
 
 - Vite
 - TypeScript
@@ -60,14 +56,15 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+### Run the app locally
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+You will need Node.js and npm installed (for example via `nvm`).
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+git clone <YOUR_GIT_URL>
+cd <YOUR_PROJECT_NAME>
+npm install
+npm run dev
+```
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Then open the local URL printed in your terminal (typically `http://localhost:5173`) to view the app.

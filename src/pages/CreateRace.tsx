@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Race, RaceDistance, DISTANCE_LABELS } from '@/types/race';
 import { saveRace, getRace, getTasksForRace, saveTasks } from '@/lib/storage';
 import { generateDefaultChecklist, duplicateRace } from '@/lib/checklist-engine';
+import { COUNTRY_OPTIONS, resolveCountryToCode } from '@/lib/country-flag';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,7 +32,7 @@ export default function CreateRace() {
     date: '',
     start_time: sourceRace?.start_time || '',
     city: sourceRace?.city || '',
-    country: sourceRace?.country || '',
+    country: resolveCountryToCode(sourceRace?.country) || '',
     is_travel_race: sourceRace?.is_travel_race ?? false,
   });
 
@@ -208,12 +209,24 @@ export default function CreateRace() {
 
                 <div className="space-y-2">
                   <Label htmlFor="country">Country</Label>
-                  <Input
-                    id="country"
-                    value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    placeholder="e.g., Singapore"
-                  />
+                  <Select
+                    value={formData.country || '__none__'}
+                    onValueChange={(v) =>
+                      setFormData({ ...formData, country: v === '__none__' ? '' : v })
+                    }
+                  >
+                    <SelectTrigger id="country">
+                      <SelectValue placeholder="—" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="__none__">—</SelectItem>
+                      {COUNTRY_OPTIONS.map(({ code, name }) => (
+                        <SelectItem key={code} value={code}>
+                          {name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 

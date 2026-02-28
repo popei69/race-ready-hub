@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Race, RaceDistance, DISTANCE_LABELS } from '@/types/race';
 import { saveRace, getRace } from '@/lib/storage';
+import { COUNTRY_OPTIONS, resolveCountryToCode } from '@/lib/country-flag';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,7 +56,7 @@ export default function EditRace() {
       date: race.date,
       start_time: race.start_time || '',
       city: race.city || '',
-      country: race.country || '',
+      country: resolveCountryToCode(race.country) || '',
       is_travel_race: race.is_travel_race,
     });
   }, [raceId, navigate]);
@@ -196,12 +197,24 @@ export default function EditRace() {
 
                 <div className="space-y-2">
                   <Label htmlFor="country">Country</Label>
-                  <Input
-                    id="country"
-                    value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    placeholder="e.g., Singapore"
-                  />
+                  <Select
+                    value={formData.country || '__none__'}
+                    onValueChange={(v) =>
+                      setFormData({ ...formData, country: v === '__none__' ? '' : v })
+                    }
+                  >
+                    <SelectTrigger id="country">
+                      <SelectValue placeholder="—" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="__none__">—</SelectItem>
+                      {COUNTRY_OPTIONS.map(({ code, name }) => (
+                        <SelectItem key={code} value={code}>
+                          {name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 

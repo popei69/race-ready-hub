@@ -25,6 +25,7 @@ import {
   MILESTONE_LABELS,
   PersonalizationProfile,
 } from '@/types/race';
+import { getRaceDisplayName } from '@/lib/country-flag';
 import { Header } from '@/components/Header';
 import { TaskItem } from '@/components/TaskItem';
 import { TaskEditDialog } from '@/components/TaskEditDialog';
@@ -219,7 +220,7 @@ export default function RaceOverview() {
   return (
     <div className="min-h-screen bg-background pb-20 sm:pb-6">
       <Header
-        title={race.name}
+        title={getRaceDisplayName(race)}
         showBack
         backTo="/"
         actions={
@@ -514,7 +515,7 @@ export default function RaceOverview() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this race?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete "{race.name}" and all its tasks. This action cannot be undone.
+              This will permanently delete "{getRaceDisplayName(race)}" and all its tasks. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -22,7 +22,7 @@ Open Race Ready Hub in your browser and start planning your next race:
 
 https://popei69.github.io/race-ready-hub/
 
-You can use it on desktop or mobile — perfect for updating your checklist while traveling or the night before your race. It does not require any login and uses your cookies to store the races.
+You can use it on desktop or mobile — perfect for updating your checklist while traveling or the night before your race. It does not require any login and stores your races in your browser’s local storage, so your data stays on your device and the app works offline once loaded.
 
 ## How it works (for runners)
 

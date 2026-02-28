@@ -1,5 +1,6 @@
 import { Race, DISTANCE_LABELS } from '@/types/race';
 import { daysUntilRace, calculateProgress } from '@/lib/checklist-engine';
+import { getLocationDisplay } from '@/lib/country-flag';
 import { getTasksForRace } from '@/lib/storage';
 import { MapPin, Calendar, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -35,6 +36,7 @@ export function RaceCard({ race, index }: RaceCardProps) {
   };
 
   const isPast = daysLeft < 0;
+  const locationDisplay = getLocationDisplay(race);
 
   return (
     <motion.div
@@ -66,10 +68,10 @@ export function RaceCard({ race, index }: RaceCardProps) {
                 {formatDate(race.date)}
                 {race.start_time && ` · ${race.start_time}`}
               </span>
-              {(race.city || race.country) && (
+              {locationDisplay && (
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-4 h-4" />
-                  {[race.city, race.country].filter(Boolean).join(', ')}
+                  {locationDisplay}
                 </span>
               )}
             </div>

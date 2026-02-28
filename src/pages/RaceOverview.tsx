@@ -25,7 +25,7 @@ import {
   MILESTONE_LABELS,
   PersonalizationProfile,
 } from '@/types/race';
-import { getRaceDisplayName } from '@/lib/country-flag';
+import { getLocationDisplay } from '@/lib/country-flag';
 import { Header } from '@/components/Header';
 import { TaskItem } from '@/components/TaskItem';
 import { TaskEditDialog } from '@/components/TaskEditDialog';
@@ -217,10 +217,12 @@ export default function RaceOverview() {
       .sort((a, b) => a.sort_order - b.sort_order);
   };
 
+  const locationDisplay = getLocationDisplay(race);
+
   return (
     <div className="min-h-screen bg-background pb-20 sm:pb-6">
       <Header
-        title={getRaceDisplayName(race)}
+        title={race.name}
         showBack
         backTo="/"
         actions={
@@ -279,10 +281,10 @@ export default function RaceOverview() {
                       {race.start_time}
                     </span>
                   )}
-                  {(race.city || race.country) && (
+                  {locationDisplay && (
                     <span className="flex items-center gap-1.5">
                       <MapPin className="w-4 h-4" />
-                      {[race.city, race.country].filter(Boolean).join(', ')}
+                      {locationDisplay}
                     </span>
                   )}
                 </div>
@@ -515,7 +517,7 @@ export default function RaceOverview() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this race?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete "{getRaceDisplayName(race)}" and all its tasks. This action cannot be undone.
+              This will permanently delete "{race.name}" and all its tasks. This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

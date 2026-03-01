@@ -3,7 +3,6 @@ import {
   getAlpha2Code,
   registerLocale,
 } from 'i18n-iso-countries';
-// @ts-expect-error - locale JSON has no type exports
 import en from 'i18n-iso-countries/langs/en.json';
 
 registerLocale(en);

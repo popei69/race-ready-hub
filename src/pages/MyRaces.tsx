@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getRaces } from '@/lib/storage';
 import { RaceCard } from '@/components/RaceCard';
 import { Header } from '@/components/Header';
 import { EmptyState } from '@/components/EmptyState';
+import { DataManagement } from '@/components/DataManagement';
 import { Button } from '@/components/ui/button';
-import { Plus, Trophy, Flag } from 'lucide-react';
+import { Plus, Flag } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+function loadSortedRaces() {
+  return getRaces().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}
 
 export default function MyRaces() {
   const navigate = useNavigate();
-  const [races] = useState(() => {
-    const allRaces = getRaces();
-    // Sort by date ascending
-    return allRaces.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  });
+  const [races, setRaces] = useState(loadSortedRaces);
+
+  const refreshRaces = useCallback(() => {
+    setRaces(loadSortedRaces());
+  }, []);
 
   const upcomingRaces = races.filter((r) => new Date(r.date) >= new Date(new Date().toDateString()));
   const pastRaces = races.filter((r) => new Date(r.date) < new Date(new Date().toDateString()));
@@ -24,12 +29,15 @@ export default function MyRaces() {
       <Header
         title="My Races"
         actions={
-          races.length > 0 ? (
-            <Button onClick={() => navigate('/race/new')} size="sm" className="gap-2">
-              <Plus className="w-4 h-4" />
-              <span className="hidden sm:inline">Add Race</span>
-            </Button>
-          ) : null
+          <div className="flex items-center gap-2">
+            <DataManagement onImportComplete={refreshRaces} />
+            {races.length > 0 && (
+              <Button onClick={() => navigate('/race/new')} size="sm" className="gap-2">
+                <Plus className="w-4 h-4" />
+                <span className="hidden sm:inline">Add Race</span>
+              </Button>
+            )}
+          </div>
         }
       />
 
